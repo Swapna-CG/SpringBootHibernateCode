@@ -1,19 +1,31 @@
 package com.mouritech.springboothibernatedemo.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "product_info")
@@ -25,7 +37,7 @@ public class Product {
 	@Column(name = "product_id",length = 64)
 	private String productId;
 	
-	@Column(name="product_name")
+	@Column(name="product_name",unique = true )
 	private String productName;
 	
 	@Column(name="product_price")
@@ -52,11 +64,28 @@ public class Product {
 		this.productMfgDate = productMfgDate;
 		this.productExpDate = productExpDate;
 	}
+	
+	
 
 	public Product(String productName, float productPrice) {
 		super();
 		this.productName = productName;
 		this.productPrice = productPrice;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY,optional = false)
+	@JoinColumn(name="seller_id",nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	//@JsonIgnore
+	private Seller seller;
+	
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 
 	public String getProductId() {

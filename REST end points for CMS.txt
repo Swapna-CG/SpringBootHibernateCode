@@ -1,0 +1,16 @@
+localhost:8083/canteen/api/v1/customers
+localhost:8083/canteen/api/v1/vendors
+localhost:8083/canteen/api/v1/orders
+
+localhost:8083/canteen/api/v1/vendors/1/menu
+localhost:8083/canteen/api/v1/vendors/1/menu
+localhost:8083/canteen/api/v1/menu
+
+localhost:8083/canteen/api/v1/menu/{itemId}/itemImages
+localhost:8083/canteen/api/v1/menu/{itemId}/itemImages
+
+localhost:8083/canteen/api/v1/orders/{orderId}/orderdetails
+
+localhost:9898/upload/image
+
+'Array in Java.png'
