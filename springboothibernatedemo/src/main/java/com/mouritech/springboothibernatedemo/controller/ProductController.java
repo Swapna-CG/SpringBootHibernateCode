@@ -25,6 +25,10 @@ import com.mouritech.springboothibernatedemo.exception.SellerNotFoundException;
 import com.mouritech.springboothibernatedemo.repository.ProductRepository;
 import com.mouritech.springboothibernatedemo.service.ProductService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "CRUD REST API's for Product resources")
 @RestController// (@Controller + @ResponseBody)
 @RequestMapping("product/api/v1")
 public class ProductController {
@@ -37,6 +41,7 @@ public class ProductController {
 	
 	
 	@PostMapping("product")
+	
 	public Product insertProduct(@RequestBody Product newProduct) {
 		
 		return productService.insertProduct(newProduct);
@@ -50,6 +55,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("product/{pid}")
+	@ApiOperation(value = "Find product by id",
+    notes = "Returns a product matched with given id")
 	public Product showProductById(@PathVariable("pid") String productId) throws ProductNotFoundException{
 		return productService.showProductById(productId);
 		
