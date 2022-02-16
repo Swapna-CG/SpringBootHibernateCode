@@ -8,7 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.mouritech.springbootsecurityrestexample.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/auth")
+@SuppressWarnings("unused")
 public class AuthController {
 	
 	@Autowired
@@ -28,6 +30,7 @@ public class AuthController {
 	@Autowired
 	private UserRepository userRepository;
 	
+
 	@Autowired
 	private RoleRepository roleRepository;
 	
@@ -45,5 +48,15 @@ public class AuthController {
 		return new ResponseEntity<String>("User signed-in successfully!!!!",HttpStatus.OK);
 		
 	}
-
+	
+	@GetMapping("/logout")
+	public ResponseEntity<String> logout(){
+		/*
+		 * Authentication authentication =
+		 * SecurityContextHolder.getContext().getAuthentication(); if(authentication !=
+		 * null) { new SecurityContextLogoutHandler().logout(request, response,
+		 * authentication); }
+		 */
+		return new ResponseEntity<String>("User signed-out successfully!!!!",HttpStatus.OK);
+	}
 }
