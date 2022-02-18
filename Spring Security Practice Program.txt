@@ -1,0 +1,8 @@
+Create a project using
+springboot,hibernate,jpa,security to insert staff
+staffid,staffname,staffemail,staffpassword,staffrole,staffcommission,staffsalary,staffmobno
+and authenticate the staff based on following roles
+
+CEO (has access to all links)
+Manager (has access to update the stock and generatereports monthly to check performance of salesperson based on commission earned,has access to update staffslary after appraisals)
+SalesPerson (has access only to update his information like email and mobno)
